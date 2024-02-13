@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package methodology;
+option go_package = "methodology/pb";
+
+message DataRequest {
+  string Methodology = 1;
+  uint32 Reference = 2;
+  uint32 Version = 3;
+  reserved 4;
+  reserved 5;
+  reserved 6;
+  reserved 7;
+  reserved 8;
+  reserved 9;
+  optional double AverageTemperature = 10; // AVG_TEMPERATURE
+  optional double AccumulatedPrecipitation = 11; //S UM_PRECIPITATION
+  optional double Evapotranspiration = 12; // EVAPOTRANSPIRATION
+  optional double FractionMethaneRecovery = 13; // BE_SWDS_CH4_RECOVERY
+  optional string MethaneCorrectionFactorDefault = 14; // BE_SWDS_MCF_DEFAULT
+  optional double OxidationFactor = 15; // BE_SWDS_OXIDATION_FACTOR
+  optional double OverwriteMethaneCorrectionFactor = 16; // BE_SWDS_MCF_OVERWRITE
+  optional string WaterTable = 17; // BE_SWDS_MCF_WATER_TABLE
+  optional double WaterTableHeight = 18; // BE_SWDS_MCF_WATER_TABLE_HEIGHT
+  optional double WaterTableDepth = 19; // BE_SWDS_MCF_DEPTH
+  optional int32 DecompositionYear = 20; // WASTE_SWDS_DECOMPOSITION_YEAR
+}
+
+message DetailRequest {
+  uint32 Reference = 2;
+  uint32 Version = 3;
+}
+
+message DetailResponse {
+  bytes Detail = 1;
+  double ReductionUnit = 2;
+}
+
+message CalculateResponse {
+  double Calculate = 1;
+}
+
+service MethodologyService {
+  rpc Calculate(DataRequest) returns (CalculateResponse);
+  rpc GetDetail(DetailRequest) returns (DetailResponse);
+}

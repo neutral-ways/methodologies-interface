@@ -24,6 +24,12 @@ message DataRequest {
   optional double WaterTableHeight = 18; // BE_SWDS_MCF_WATER_TABLE_HEIGHT
   optional double WaterTableDepth = 19; // BE_SWDS_MCF_DEPTH
   optional int32 DecompositionYear = 20; // WASTE_SWDS_DECOMPOSITION_YEAR
+  repeated WasteBaselineEmissionCompositionRequest WasteBaselineEmissionComposition = 21; // WASTE_BE_SWDS_COMPOSITION
+}
+
+message WasteBaselineEmissionCompositionRequest {
+ optional string Key = 1;
+ optional double Value = 2;
 }
 
 message DetailRequest {
